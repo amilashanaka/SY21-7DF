@@ -41,6 +41,8 @@ class Basket
 
             if($arr[2]>0){
 
+                print " Fix price promo rule";
+
                 $this->fix_promo = true;
                 $this->fix_price = $arr[2];
             }
@@ -97,6 +99,10 @@ class Basket
            
 
             if($this->promo){
+
+                print "prodct details \n";
+
+                var_dump($product);
 
                 if($product->sku==$this->promo_sku){
 

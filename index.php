@@ -68,7 +68,12 @@ function example4() {
     global $store;
 
 
-    $basket = new \Gloversure\Store\Basket();
+    $rule = new \Gloversure\Store\Rules(1, 1, 3.99,'ST01');
+
+    $rule2= $rule->get_rule();
+
+
+    $basket = new \Gloversure\Store\Basket($rule2);
 
     $basket->addItems(
         $store->getProduct('ST01'),
