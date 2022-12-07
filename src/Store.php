@@ -9,7 +9,9 @@ final class Store
      */
     private $products = [];
 
-    public $xml_file;
+    private $content;
+
+
 
 
 
@@ -18,12 +20,10 @@ final class Store
         if (!file_exists($storeXml))
             throw new Exception\FileNotFoundException("Store XML \"{$storeXml}\" doesn't exist");
 
+
         $contents = file_get_contents($storeXml);
+        $this->content = $contents;
         $xml = new \SimpleXMLElement($contents);
-
-        $this->xml_file = $xml;
-        
-
         $this->products = $this->parseXml($xml);
     }
 
@@ -91,8 +91,14 @@ final class Store
     }
 
     public function store_xml(){
+        $xml = new \SimpleXMLElement($this->content);
 
-        $this->xml_file->add_child('products','<product sku="New01" name="New" price="0.50" />');
+        var_dump($xml);
+
+        // $xml->add_child('products','<product sku="New01" name="New" price="0.50" />');
+        // saveXML($xml);
+
+       
     }
 
 

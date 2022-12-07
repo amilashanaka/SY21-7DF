@@ -20,7 +20,7 @@ $path = [
 ];
 $store = new \Gloversure\Store\Store(implode(DIRECTORY_SEPARATOR, $path));
 
-$store->store_xml();
+// $store->store_xml();
 
 function example1() {
     global $store;
@@ -51,6 +51,8 @@ function example2() {
         $store->getProduct('CH01'),
         2
     );
+
+    $basket->print_basket();
 
     return $basket->total;
 }
@@ -114,7 +116,7 @@ print_r('Example 4 result: ' . example4() . PHP_EOL);
 
 
 // Uncomment this when you have finished challenge 3
-print_r('Example 5 result: ' . example5() . PHP_EOL);
+// print_r('Example 5 result: ' . example5() . PHP_EOL);
 
 
 

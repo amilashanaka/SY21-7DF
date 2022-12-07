@@ -102,9 +102,9 @@ class Basket
 
                 print "prodct details \n";
 
-                var_dump($product);
+                // var_dump($product);
 
-                if($product->sku==$this->promo_sku){
+                if($product->product->sku==$this->promo_sku){
 
                     $this->total += ($product->product->price * $product->quantity)/2;
                 }else{
@@ -134,6 +134,12 @@ class Basket
     public function print_basket(): void 
     {
 
+        foreach ($this->products as $product) {
+
+            print " Product sku: " . $product->product->sku . "product name : " . $product->product->name . "Product Quntity : " . $product->quantity . "item price : " . $product->price;
+
+
+        }
 
 
     }
