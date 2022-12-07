@@ -9,18 +9,21 @@ class Rules{
 
     protected $fix_rate;
 
-    public function __construct($mini=1,$ratio=1,$fix_rate="no"){
+    protected $product_code;
+
+    public function __construct($mini=1,$ratio=1,$fix_rate=0,$product_code=''){
 
         $this->miimum_items = $mini;
         $this->free_itms_ratio=$ratio;
         $this->fix_rate = $fix_rate;
+        $this->product_code = $product_code;
 
 
     }
 
     public function get_rule(){
 
-        return $this->miimum_items.','.$this->free_itms_ratio.','.$this->fix_rate;
+        return $this->miimum_items.','.$this->free_itms_ratio.','.$this->fix_rate .','.$this->product_code;
     }
 
 }

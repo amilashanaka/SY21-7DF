@@ -38,8 +38,12 @@ function example2() {
     global $store;
 
 
+    
+    $rule = new \Gloversure\Store\Rules(1, 2, 0,'CH01');
 
-    $basket = new \Gloversure\Store\Basket();
+    $rule1= $rule->get_rule();
+
+    $basket = new \Gloversure\Store\Basket($rule1);
 
     $basket->addItems(
         $store->getProduct('CH01'),
@@ -63,11 +67,8 @@ function example3() {
 function example4() {
     global $store;
 
-    $rule = new \Gloversure\Store\Rules(1, 2, "no");
 
-    $rule1= $rule->get_rule();
-
-    $basket = new \Gloversure\Store\Basket($rule1);
+    $basket = new \Gloversure\Store\Basket();
 
     $basket->addItems(
         $store->getProduct('ST01'),

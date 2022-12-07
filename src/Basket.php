@@ -19,6 +19,13 @@ class Basket
 
     private $promo=false;
 
+    private $fix_promo = false;
+
+    private $fix_price = 0;
+
+    private $promo_sku = '';
+
+
     public function __construct($rules= null){
       
 
@@ -30,6 +37,17 @@ class Basket
             if($arr[1]==2){
                 print " buy1 frre 1 rule apply";
                 $this->promo = true;
+            }
+
+            if($arr[2]>0){
+
+                $this->fix_promo = true;
+                $this->fix_price = $arr[2];
+            }
+
+            if($arr[3]!=''){
+
+                $this->promo_sku=$arr[3];
             }
 
 
@@ -76,11 +94,41 @@ class Basket
         $this->total = 0;
         /** @var Basket\Product $product */
         foreach ($this->products as $product) {
-            $this->total += $product->product->price * $product->quantity;
+           
+
+            if($this->promo){
+
+                if($product->sku==$this->promo_sku){
+
+                    $this->total += ($product->product->price * $product->quantity)/2;
+                }else{
+
+                    $this->total += $product->product->price * $product->quantity;
+                }
+            }else{
+
+                if($this->fix_promo){
+
+                    if($product->quantity>4){
+
+                        $this->total = $this->fix_price * $product->quantity;
+
+                    }
+                }else{
+
+                    $this->total += $product->product->price * $product->quantity;
+                }
+                
+            }
         }
 
-        if($this->promo){
-            $this->total = $this->total / 2;
-        }
+
+    }
+
+    public function print_basket(): void 
+    {
+
+
+
     }
 }

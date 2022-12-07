@@ -22,4 +22,9 @@ class Product
         $this->price = $price;
         $this->amountInStock = $amountInStock;
     }
+
+    public function get_sku(){
+
+        return $this->sku;
+    }
 }
