@@ -1,0 +1,80 @@
+Description 
+-------------------------
+A new market store has recently opened and it's only selling three items. The owner wants to
+implement offers to help promote sales.
+
+The owner wants a buy one get one free offer on Chocolate Bar. Any customer buying 2 Chocolate
+Bars should get the second Chocolate Bar free. This offer should scale if the customer purchases
+4 Chocolate Bars; 2 of the Chocolate Bars should be free.
+
+The second offer that the owner wants is a bulk-buy discount on Strawberries. If a customer purchases
+4 or more Strawberries, the price should drop to £3.99 for all Strawberries in the basket.
+
+
+Products
+-------------------------
+
+Product SKU | Name            | Price
+--------------------------------------------
+ST01        | Strawberries    | £5.99
+CH01        | Chocolate Bar   | £2.99
+AP01        | Apple           | £0.50
+
+Interacting with the basket (shown in PHP):
+
+$basket = new Basket($rules);
+$basket->addItem($store->getProduct('ST01'), 5);
+$basket->addItem($store->getProduct('CH01'), 2);
+$price = $basket->total;
+
+Running the Tests
+-------------------------
+To run the test simply run `php index.php` from the command line.
+
+Challenges
+-------------------------
+1. Implement the buy one get one free rule; described above.
+2. Implement the bulk-buy rule; described above.
+3. Add a new product to the store. Please ensure that the product SKU is "NEW01".
+4. Implement a buy one get one free rule for your new product and the Apples; the cheaper item is free.
+
+Extra Flair
+-------------------------
+1. Parse the inventory XML and store this against the product.
+2. Implement a rule that stops the user from adding more items to the basket than in the inventory.
+3. Move all tests from index.php into a phpunit suite.
+
+Test data
+-------------------------
+
+Example 1
+-------------
+Basket:
+    Product: ST01, Amount: 6
+Total price expected: £23.94
+
+Example 2
+-------------
+Basket:
+    Product: CH01, Amount 2
+Total price expected: £2.99
+
+Example 3
+-------------
+Basket:
+    Product: CH01, Amount 4
+Total price expected: £5.98
+
+Example 4
+-------------
+Basket:
+    Product: ST01, Amount: 4
+    Product: CH01, Amount: 4
+Total price expected: £21.94
+
+Example 5
+-------------
+Basket:
+    Product: NEW01, Amount: 3
+    Product: AP01,  Amount: 3
+Total price expected: dependant on the new product
