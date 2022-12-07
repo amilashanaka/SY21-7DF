@@ -9,6 +9,10 @@ final class Store
      */
     private $products = [];
 
+    public $xml_file;
+
+
+
     public function __construct(string $storeXml)
     {
         if (!file_exists($storeXml))
@@ -16,6 +20,9 @@ final class Store
 
         $contents = file_get_contents($storeXml);
         $xml = new \SimpleXMLElement($contents);
+
+        $this->xml_file = $xml;
+        
 
         $this->products = $this->parseXml($xml);
     }
@@ -82,4 +89,12 @@ final class Store
     {
         return [];
     }
+
+    public function store_xml(){
+
+        $this->xml_file->add_child('products','<product sku="New01" name="New" price="0.50" />');
+    }
+
+
+ 
 }
