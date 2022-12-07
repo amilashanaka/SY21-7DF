@@ -23,9 +23,9 @@ $store = new \Gloversure\Store\Store(implode(DIRECTORY_SEPARATOR, $path));
 function example1() {
     global $store;
 
-    $basket_rule = "buy 1 get 1 free";
 
-    $basket = new \Gloversure\Store\Basket($basket_rule);
+
+    $basket = new \Gloversure\Store\Basket();
 
     $basket->addItems(
         $store->getProduct('ST01'),
@@ -36,6 +36,8 @@ function example1() {
 }
 function example2() {
     global $store;
+
+
 
     $basket = new \Gloversure\Store\Basket();
 
@@ -61,7 +63,11 @@ function example3() {
 function example4() {
     global $store;
 
-    $basket = new \Gloversure\Store\Basket();
+    $rule = new \Gloversure\Store\Rules(1, 2, "no");
+
+    $rule1= $rule->get_rule();
+
+    $basket = new \Gloversure\Store\Basket($rule1);
 
     $basket->addItems(
         $store->getProduct('ST01'),

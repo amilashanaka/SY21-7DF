@@ -17,11 +17,24 @@ class Basket
     public float $total = 0;
     private Array $products = [];
 
+    private $promo=false;
+
     public function __construct($rules= null){
       
 
         if($rules!=null){
             print "create with rules";
+
+            $arr = explode (",", $rules);
+
+            if($arr[1]==2){
+                print " buy1 frre 1 rule apply";
+                $this->promo = true;
+            }
+
+
+
+
         }else{
 
             print "create with no rules";
@@ -64,6 +77,10 @@ class Basket
         /** @var Basket\Product $product */
         foreach ($this->products as $product) {
             $this->total += $product->product->price * $product->quantity;
+        }
+
+        if($this->promo){
+            $this->total = $this->total / 2;
         }
     }
 }
